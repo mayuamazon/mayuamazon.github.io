@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ままごころ — 子育てママのおすすめ商品</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream: #fdf8f3;
+      --warm-white: #fffcf8;
+      --blush: #f2b8a0;
+      --blush-light: #fde8df;
+      --sage: #8aab8e;
+      --sage-light: #d4e8d5;
+      --brown: #6b4c3b;
+      --brown-light: #a07060;
+      --text: #3a2a22;
+      --text-sub: #7a6258;
+      --border: #ead9d0;
+    }
+ 
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+ 
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.8;
+    }
+ 
+    /* ===== HEADER ===== */
+    header {
+      background: var(--warm-white);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 0 2rem;
+    }
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    .logo {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--brown);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+    }
+    .logo span { color: var(--blush); }
+    nav { display: flex; gap: 1.8rem; }
+    nav a {
+      font-size: 0.82rem;
+      color: var(--text-sub);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--brown); }
+ 
+    /* ===== HERO ===== */
+    .hero {
+      background: linear-gradient(135deg, #fde8df 0%, #d4e8d5 100%);
+      padding: 80px 2rem 70px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 280px; height: 280px;
+      border-radius: 50%;
+      background: rgba(242,184,160,0.25);
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -40px;
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      background: rgba(138,171,142,0.2);
+    }
+    .hero-badge {
+      display: inline-block;
+      background: var(--blush);
+      color: #fff;
+      font-size: 0.75rem;
+      padding: 4px 16px;
+      border-radius: 20px;
+      letter-spacing: 0.1em;
+      margin-bottom: 1.2rem;
+    }
+    .hero h1 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      font-weight: 700;
+      color: var(--brown);
+      line-height: 1.4;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 0.95rem;
+      color: var(--text-sub);
+      max-width: 480px;
+      margin: 0 auto 2rem;
+    }
+    .hero-scroll {
+      font-size: 0.8rem;
+      color: var(--brown-light);
+      letter-spacing: 0.1em;
+    }
+ 
+    /* ===== SECTION COMMON ===== */
+    section { padding: 72px 2rem; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      color: var(--blush);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 700;
+      color: var(--brown);
+      margin-bottom: 0.6rem;
+    }
+    .section-desc {
+      font-size: 0.9rem;
+      color: var(--text-sub);
+      margin-bottom: 2.5rem;
+    }
+ 
+    /* ===== PRODUCT CARDS ===== */
+    .products { background: var(--warm-white); }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.8rem;
+    }
+    .product-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(107,76,59,0.1);
+    }
+    .card-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      background: var(--blush-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+    }
+    .card-body { padding: 1.4rem; }
+    .card-tag {
+      display: inline-block;
+      background: var(--sage-light);
+      color: var(--sage);
+      font-size: 0.72rem;
+      padding: 2px 10px;
+      border-radius: 12px;
+      margin-bottom: 0.6rem;
+    }
+    .card-name {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--brown);
+      margin-bottom: 0.5rem;
+    }
+    .card-desc {
+      font-size: 0.83rem;
+      color: var(--text-sub);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+    .review {
+      background: var(--cream);
+      border-left: 3px solid var(--blush);
+      padding: 0.6rem 0.9rem;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 1.1rem;
+    }
+    .review-stars { color: #f5a623; font-size: 0.85rem; }
+    .review-text {
+      font-size: 0.8rem;
+      color: var(--text-sub);
+      font-style: italic;
+      margin-top: 2px;
+    }
+    .btn-amazon {
+      display: block;
+      background: var(--brown);
+      color: #fff;
+      text-decoration: none;
+      text-align: center;
+      padding: 0.65rem 1rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      transition: background 0.2s;
+    }
+    .btn-amazon:hover { background: var(--brown-light); }
+    .btn-amazon span { font-size: 0.75rem; opacity: 0.8; }
+ 
+    /* ===== ABOUT ===== */
+    .about { background: var(--cream); }
+    .about-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .about-visual {
+      background: linear-gradient(135deg, var(--blush-light), var(--sage-light));
+      border-radius: 20px;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+    }
+    .about p {
+      font-size: 0.9rem;
+      color: var(--text-sub);
+      margin-bottom: 1rem;
+    }
+ 
+    /* ===== PRIVACY ===== */
+    .privacy { background: var(--warm-white); }
+    .policy-box {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem;
+    }
+    .policy-box h3 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1rem;
+      color: var(--brown);
+      margin: 1.5rem 0 0.5rem;
+    }
+    .policy-box h3:first-child { margin-top: 0; }
+    .policy-box p {
+      font-size: 0.85rem;
+      color: var(--text-sub);
+      line-height: 1.8;
+    }
+ 
+    /* ===== CONTACT ===== */
+    .contact { background: var(--cream); }
+    .contact-box {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem;
+    }
+    .form-group { margin-bottom: 1.2rem; }
+    label {
+      display: block;
+      font-size: 0.82rem;
+      color: var(--brown);
+      margin-bottom: 0.4rem;
+      font-weight: 500;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 0.7rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.88rem;
+      color: var(--text);
+      background: var(--cream);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    input:focus, textarea:focus { border-color: var(--blush); }
+    textarea { resize: vertical; min-height: 120px; }
+    .btn-submit {
+      width: 100%;
+      background: var(--blush);
+      color: #fff;
+      border: none;
+      padding: 0.8rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-family: 'Noto Sans JP', sans-serif;
+      cursor: pointer;
+      letter-spacing: 0.05em;
+      transition: background 0.2s;
+    }
+    .btn-submit:hover { background: var(--brown-light); }
+ 
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--brown);
+      color: rgba(255,255,255,0.7);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.8rem;
+    }
+    footer a { color: rgba(255,255,255,0.5); text-decoration: none; }
+    .footer-logo {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.2rem;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+    .affiliate-notice {
+      background: var(--blush-light);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.8rem 1.2rem;
+      font-size: 0.78rem;
+      color: var(--text-sub);
+      max-width: 800px;
+      margin: 0 auto 3rem;
+      text-align: center;
+    }
+ 
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      nav { display: none; }
+      .about-box { grid-template-columns: 1fr; }
+      .about-visual { height: 180px; font-size: 3rem; }
+      .product-grid { grid-template-columns: 1fr; }
+      section { padding: 48px 1.2rem; }
+    }
+ 
+    /* ===== ANIMATION ===== */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hero h1, .hero p, .hero-badge {
+      animation: fadeUp 0.7s ease both;
+    }
+    .hero-badge { animation-delay: 0.1s; }
+    .hero h1 { animation-delay: 0.2s; }
+    .hero p { animation-delay: 0.35s; }
+  </style>
+</head>
+<body>
+ 
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a href="#" class="logo">まま<span>ごころ</span></a>
+    <nav>
+      <a href="#products">おすすめ商品</a>
+      <a href="#about">このサイトについて</a>
+      <a href="#privacy">プライバシーポリシー</a>
+      <a href="#contact">お問い合わせ</a>
+    </nav>
+  </div>
+</header>
+ 
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">子育てママによる・ママのための</div>
+  <h1>毎日をちょっと<br>ラクにしてくれるもの</h1>
+  <p>3児のママが実際に使って「これはよかった！」と感じた商品だけを、正直にご紹介しています。</p>
+  <div class="hero-scroll">↓ おすすめ商品を見る</div>
+</section>
+ 
+<!-- AFFILIATE NOTICE -->
+<div style="padding: 0 2rem; margin-top: 2rem;">
+  <div class="affiliate-notice">
+    ⚠️ 当サイトはAmazonアソシエイト・プログラムの参加者です。商品リンクからご購入いただいた場合、当サイトが紹介料を受け取ることがあります。商品の評価・選定は独自の基準で行っています。
+  </div>
+</div>
+ 
+<!-- PRODUCTS -->
+<section class="products" id="products">
+  <div class="section-inner">
+    <div class="section-label">RECOMMENDED ITEMS</div>
+    <h2 class="section-title">ママが本当に使って良かった商品</h2>
+    <p class="section-desc">「買ってよかった！」が詰まった5つのカテゴリをご紹介します。</p>
+ 
+    <div class="product-grid">
+ 
+      <!-- 商品1 -->
+      <div class="product-card">
+        <div class="card-img">🍼</div>
+        <div class="card-body">
+          <span class="card-tag">授乳・離乳食</span>
+          <div class="card-name">電動鼻水吸引器 BabySmile S-503</div>
+          <p class="card-desc">
+            赤ちゃんの鼻水に悩むすべてのママへ。口で吸うタイプより断然ラクで、嫌がらずに使えました。深夜でも静かに使えるのが助かります。
+          </p>
+          <div class="review">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">「買うのが遅すぎた！これがあれば夜中に何度も起きなくて済んだのに…（1歳ママ）」</p>
+          </div>
+          <a href="https://www.amazon.co.jp/" class="btn-amazon">Amazonで確認する <span>→</span></a>
+        </div>
+      </div>
+ 
+      <!-- 商品2 -->
+      <div class="product-card">
+        <div class="card-img">🛁</div>
+        <div class="card-body">
+          <span class="card-tag">お風呂・スキンケア</span>
+          <div class="card-name">ワンオペお風呂 バスチェア リクライニング</div>
+          <p class="card-desc">
+            ワンオペお風呂の救世主。赤ちゃんをここに座らせて自分が洗える！首すわり前でも使えるタイプは特におすすめ。長く使えてコスパ◎。
+          </p>
+          <div class="review">
+            <div class="review-stars">★★★★☆</div>
+            <p class="review-text">「一人でお風呂を乗り切れるようになりました。これなしでどうやって入れていたのか謎（2歳ママ）」</p>
+          </div>
+          <a href="https://www.amazon.co.jp/" class="btn-amazon">Amazonで確認する <span>→</span></a>
+        </div>
+      </div>
+ 
+      <!-- 商品3 -->
+      <div class="product-card">
+        <div class="card-img">📚</div>
+        <div class="card-body">
+          <span class="card-tag">知育・おもちゃ</span>
+          <div class="card-name">モンテッソーリ 木製パズル 10枚セット</div>
+          <p class="card-desc">
+            1〜3歳の集中力・指先の発達に。木のぬくもりがあって口に入れても安心な素材。リビングに出しっぱなしにしてもおしゃれに見えるデザイン。
+          </p>
+          <div class="review">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">「1歳半からハマって毎日やってます。集中している時間が増えました（1歳半ママ）」</p>
+          </div>
+          <a href="https://www.amazon.co.jp/" class="btn-amazon">Amazonで確認する <span>→</span></a>
+        </div>
+      </div>
+ 
+      <!-- 商品4 -->
+      <div class="product-card">
+        <div class="card-img">🎒</div>
+        <div class="card-body">
+          <span class="card-tag">外出・お出かけ</span>
+          <div class="card-name">軽量マザーズバッグ 撥水 大容量</div>
+          <p class="card-desc">
+            オムツ・着替え・おやつ・自分のものまで全部入る大容量なのに、見た目がすっきりシンプル。撥水加工で急な雨にも安心。肩への負担も少なめ。
+          </p>
+          <div class="review">
+            <div class="review-stars">★★★★☆</div>
+            <p class="review-text">「ゴチャゴチャしてたバッグの中が整理できた。取り出しやすくて助かる（0歳ママ）」</p>
+          </div>
+          <a href="https://www.amazon.co.jp/" class="btn-amazon">Amazonで確認する <span>→</span></a>
+        </div>
+      </div>
+ 
+      <!-- 商品5 -->
+      <div class="product-card">
+        <div class="card-img">🌙</div>
+        <div class="card-body">
+          <span class="card-tag">寝かしつけ・ねんね</span>
+          <div class="card-name">ホワイトノイズマシン DREAMEGG D1</div>
+          <p class="card-desc">
+            寝かしつけに悩むママ必見。ホワイトノイズ・ファン音・雨音など20種類以上。昼間でも暗くしなくていいし、生活音を気にしなくて済むのが最高。
+          </p>
+          <div class="review">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">「30分かかっていた寝かしつけが5分になりました。神アイテムすぎる（4ヶ月ママ）」</p>
+          </div>
+          <a href="https://www.amazon.co.jp/" class="btn-amazon">Amazonで確認する <span>→</span></a>
+        </div>
+      </div>
+ 
+    </div>
+  </div>
+</section>
+ 
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-inner">
+    <div class="about-box">
+      <div class="about-visual">👩‍👧‍👦</div>
+      <div>
+        <div class="section-label">ABOUT THIS SITE</div>
+        <h2 class="section-title">このサイトについて</h2>
+        <p>
+          はじめまして。3歳・1歳・0歳の3人を育てているまゆと申します。
+          育児をしていると「これ買えばよかった」「これは要らなかった」という経験が積み重なります。
+        </p>
+        <p>
+          このサイトでは、私が実際に購入・使用した商品の中から「本当に役立った」と感じたものだけをご紹介しています。
+          メーカーや広告費から影響を受けない、正直な口コミをお届けします。
+        </p>
+        <p>
+          少しでも育児をラクに、楽しくするお手伝いができれば嬉しいです。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- PRIVACY POLICY -->
+<section class="privacy" id="privacy">
+  <div class="section-inner">
+    <div class="section-label">LEGAL</div>
+    <h2 class="section-title">プライバシーポリシー</h2>
+    <p class="section-desc">個人情報の取り扱いについて説明します。</p>
+ 
+    <div class="policy-box">
+      <h3>1. 個人情報の収集について</h3>
+      <p>当サイトでは、お問い合わせフォームからお名前・メールアドレスをお預かりする場合があります。これらは、ご質問への回答以外の目的には使用しません。</p>
+ 
+      <h3>2. Cookieの使用について</h3>
+      <p>当サイトでは、サービス向上のためCookieを使用する場合があります。ブラウザの設定によりCookieを無効にすることが可能です。</p>
+ 
+      <h3>3. アクセス解析ツールについて</h3>
+      <p>当サイトでは、Google Analyticsを利用しています。このツールはトラフィックデータ収集のためCookieを使用しており、個人を特定する情報は含まれません。</p>
+ 
+      <h3>4. Amazonアソシエイトについて</h3>
+      <p>当サイトはAmazon.co.jpを宣伝しリンクすることによってサイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイトプログラムである、Amazonアソシエイト・プログラムの参加者です。</p>
+ 
+      <h3>5. 免責事項</h3>
+      <p>当サイトに掲載されている情報は可能な限り正確を期していますが、内容の正確性・完全性を保証するものではありません。当サイトの情報をもとに生じたいかなる損害についても、当サイトは一切の責任を負いかねます。</p>
+ 
+      <h3>6. プライバシーポリシーの変更</h3>
+      <p>本ポリシーの内容は、必要に応じて変更することがあります。変更後のポリシーは当ページに掲載した時点から効力を生じるものとします。</p>
+ 
+      <h3>7. お問い合わせ</h3>
+      <p>本ポリシーに関するご質問は、下記のお問い合わせフォームよりお寄せください。</p>
+    </div>
+  </div>
+</section>
+ 
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="section-inner">
+    <div class="section-label">CONTACT</div>
+    <h2 class="section-title" style="text-align:center;">お問い合わせ</h2>
+    <p class="section-desc" style="text-align:center;">商品に関するご質問・ご要望などお気軽にどうぞ。</p>
+ 
+    <div class="contact-box">
+      <div class="form-group">
+        <label for="name">お名前</label>
+        <input type="text" id="name" placeholder="山田 花子" />
+      </div>
+      <div class="form-group">
+        <label for="email">メールアドレス</label>
+        <input type="email" id="email" placeholder="example@email.com" />
+      </div>
+      <div class="form-group">
+        <label for="message">メッセージ</label>
+        <textarea id="message" placeholder="ご質問・ご要望をご記入ください"></textarea>
+      </div>
+      <button class="btn-submit">送信する</button>
+      <p style="font-size:0.75rem; color:var(--text-sub); text-align:center; margin-top:1rem;">
+        ※ 通常2〜3営業日以内にご返信いたします
+      </p>
+    </div>
+  </div>
+</section>
+ 
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">ままごころ</div>
+  <p style="margin-bottom:0.5rem;">子育てママのおすすめ商品サイト</p>
+  <p><a href="#privacy">プライバシーポリシー</a> ｜ <a href="#contact">お問い合わせ</a></p>
+  <p style="margin-top:1rem; font-size:0.72rem;">© 2025 ままごころ All rights reserved.</p>
+</footer>
+ 
+</body>
+</html>
